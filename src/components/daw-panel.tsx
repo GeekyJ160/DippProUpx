@@ -73,23 +73,31 @@ export function DawPanel() {
       <div className="mt-5 overflow-x-auto">
         <div className="min-w-[520px] space-y-2">
           {TRACKS.map((t) => (
-            <div key={t.id} className="grid items-center gap-2 sm:grid-cols-[92px_1fr_160px]">
-              <div className="flex items-center gap-1">
+            <div key={t.id} className="grid items-center gap-3 sm:grid-cols-[128px_1fr_140px]">
+              <div className="flex items-center gap-1.5">
                 <button
                   type="button"
-                  className={cn("h-8 rounded-sm px-2 text-xs", mix.mute[t.id] ? "bg-elevated text-subtle" : "bg-bg text-fg")}
+                  aria-pressed={mix.mute[t.id]}
+                  className={cn(
+                    "grid size-7 place-items-center rounded-sm border font-mono text-[10px]",
+                    mix.mute[t.id] ? "border-fg bg-fg text-bg" : "border-border text-muted",
+                  )}
                   onClick={() => patch({ ...mix, mute: { ...mix.mute, [t.id]: !mix.mute[t.id] } })}
                 >
                   M
                 </button>
                 <button
                   type="button"
-                  className={cn("h-8 rounded-sm px-2 text-xs", mix.solo === t.id ? "bg-accent text-accent-fg" : "bg-bg text-muted")}
+                  aria-pressed={mix.solo === t.id}
+                  className={cn(
+                    "grid size-7 place-items-center rounded-sm border font-mono text-[10px]",
+                    mix.solo === t.id ? "border-fg bg-fg text-bg" : "border-border text-muted",
+                  )}
                   onClick={() => patch({ ...mix, solo: mix.solo === t.id ? null : t.id })}
                 >
                   S
                 </button>
-                <span className="text-xs text-muted">{t.label}</span>
+                <span className="text-xs font-medium">{t.label}</span>
               </div>
               <div className="relative h-8 overflow-hidden rounded-sm bg-bg">
                 <div className="absolute inset-y-0 bg-accent/25" style={{ width: `${((bar + 1) / bars) * 100}%` }} />

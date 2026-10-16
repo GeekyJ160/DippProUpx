@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { ImagePlus, Pause, Play, Sparkles, Music2, X } from "lucide-react";
+import { ImagePlus, Pause, Play, Music2, X } from "lucide-react";
 import { toast } from "sonner";
 import { generateLyrics, LENGTHS } from "@/lib/ai-lyrics";
 import { analyzeBeat } from "@/lib/audio-engine";
@@ -173,16 +173,18 @@ export function CreatePanel() {
     <div className="grid gap-4 lg:grid-cols-[1.4fr_0.8fr]">
       <Card>
         <CardTitle>Turn an idea into a song</CardTitle>
-        <p className="mt-2 text-sm text-muted">
-          {genre} · {mood} · {lengthLabel}
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
+          <span>
+            {genre} · {mood} · {lengthLabel}
+          </span>
           <button
             type="button"
-            className="ml-2 font-medium text-accent"
+            className="text-fg/70 underline decoration-border underline-offset-4 hover:text-fg"
             onClick={() => setTab("settings")}
           >
-            Change in Settings
+            Settings
           </button>
-        </p>
+        </div>
         <CardDesc>
           Drop the beat you want to write to. We read BPM, key, and style so the lyrics sit in the pocket.
         </CardDesc>
@@ -210,7 +212,7 @@ export function CreatePanel() {
             }}
           />
           {beatUrl ? (
-            <div className="rounded-lg border border-border bg-bg p-3">
+            <div className="rounded-lg border border-border bg-bg p-4">
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
                   <p className="flex items-center gap-2 truncate text-sm font-medium">
@@ -257,12 +259,12 @@ export function CreatePanel() {
                 </div>
               </div>
               {peaks.length ? (
-                <div className="mt-3 flex h-12 items-end gap-0.5" aria-hidden="true">
+                <div className="mt-4 flex h-10 items-center gap-px" aria-hidden="true">
                   {peaks.map((peak, index) => (
                     <span
                       key={index}
-                      className="flex-1 rounded-sm bg-accent"
-                      style={{ height: `${Math.max(8, peak * 100)}%` }}
+                      className="flex-1 rounded-full bg-fg/80"
+                      style={{ height: `${Math.max(12, peak * 100)}%` }}
                     />
                   ))}
                 </div>
@@ -284,10 +286,13 @@ export function CreatePanel() {
                 e.preventDefault();
                 void onBeat(e.dataTransfer.files[0]);
               }}
-              className="flex min-h-24 cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-bg px-4 py-5 text-sm text-muted hover:border-accent/40 hover:text-fg"
+              className="flex min-h-24 cursor-pointer flex-col justify-center gap-1 rounded-lg border border-border bg-bg px-4 py-5 hover:border-fg/30"
             >
-              <Music2 className="size-4" />
-              {readingBeat ? "Reading the beat…" : "Drop or attach MP3 / WAV / M4A"}
+              <span className="flex items-center gap-2 text-sm font-medium text-fg">
+                <Music2 className="size-4 text-muted" />
+                {readingBeat ? "Reading the beat…" : "Add a beat"}
+              </span>
+              <span className="text-xs text-muted">MP3, WAV, or M4A. BPM and key are read from the file.</span>
             </label>
           )}
         </div>
@@ -302,20 +307,22 @@ export function CreatePanel() {
               e.preventDefault();
               void onPhoto(e.dataTransfer.files[0]);
             }}
-            className="flex min-h-20 items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-bg px-4 py-5 text-sm text-muted hover:border-accent/40 hover:text-fg"
+            className="flex min-h-16 cursor-pointer flex-col justify-center gap-1 rounded-lg border border-border bg-bg px-4 py-4 text-left hover:border-fg/30"
           >
-            <ImagePlus className="size-4" />
-            {photoDataUrl ? "Replace photo" : "Drop or attach a photo"}
+            <span className="flex items-center gap-2 text-sm font-medium text-fg">
+              <ImagePlus className="size-4 text-muted" />
+              {photoDataUrl ? "Replace photo" : "Add a photo"}
+            </span>
+            <span className="text-xs text-muted">Optional. Used as inspiration for the lyric draft.</span>
           </button>
           {photoDataUrl ? (
             <img src={photoDataUrl} alt="Inspiration" className="mt-1 max-h-40 w-full rounded-md object-cover" />
           ) : null}
         </div>
-        <Button className="mt-5 w-full" size="lg" disabled={busy || readingBeat} onClick={() => void onCreate()}>
-          <Sparkles />
+        <Button className="mt-6 sm:w-auto" size="lg" disabled={busy || readingBeat} onClick={() => void onCreate()}>
           {busy ? "Creating…" : beatUrl ? "Write to this beat" : "Create song"}
         </Button>
-        <p className="mt-4 rounded-md border border-dashed border-border bg-bg px-3 py-3 text-sm text-muted">{status}</p>
+        <p className="mt-3 text-xs text-subtle">{status}</p>
       </Card>
       <Card>
         <CardTitle>Song blueprint</CardTitle>
@@ -331,7 +338,7 @@ export function CreatePanel() {
           ].map(([k, v]) => (
             <div key={k} className="flex items-center justify-between gap-3 py-3 text-sm">
               <dt className="shrink-0 text-muted">{k}</dt>
-              <dd className="truncate text-right font-medium text-accent">{v}</dd>
+              <dd className="truncate text-right font-mono text-xs">{v}</dd>
             </div>
           ))}
         </dl>

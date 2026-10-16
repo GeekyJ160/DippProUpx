@@ -1,53 +1,43 @@
-import { Mic2, PenLine } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useStudio } from "@/store/studio-store";
 
 export function ModeGate() {
   const setMode = useStudio((s) => s.setMode);
 
   return (
-    <div className="mx-auto grid min-h-[70vh] max-w-4xl place-items-center px-4 py-10">
+    <div className="mx-auto grid min-h-[70vh] max-w-3xl place-items-center px-4 py-16">
       <div className="w-full">
-        <p className="text-xs font-medium tracking-wide text-muted uppercase">
-          DIPP PRO · RhymeForge
+        <p className="text-[11px] font-medium tracking-[0.16em] text-subtle uppercase">
+          DIPP PRO
         </p>
-        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight">
+        <h1 className="mt-3 max-w-lg font-display text-4xl font-semibold tracking-tight sm:text-5xl">
           Make your own song
         </h1>
-        <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted">
-          Turn a photo, a text idea, or your own beat into lyrics and a track. Start in Writer
-          to draft fast, or open Studio for a DAW with stems, covers, and a vocal remover.
+        <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted">
+          Start from a beat, a photo, or a line. Writer drafts. Studio mixes.
         </p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div className="mt-10 grid gap-3 sm:grid-cols-2">
           <button
             type="button"
             onClick={() => setMode("writer")}
-            className="rounded-2xl border border-border bg-surface p-6 text-left hover:border-accent/40"
+            className="min-h-44 rounded-lg bg-fg p-5 text-left text-bg"
           >
-            <PenLine className="size-5 text-accent" />
-            <h2 className="mt-4 font-display text-xl font-semibold">Writer mode</h2>
-            <p className="mt-2 text-sm text-muted">
-              Drop a beat or a photo, pick a vibe, hit Create. Lyrics lock to
-              the BPM and key, then you can edit and share.
+            <p className="text-[11px] font-medium tracking-[0.14em] uppercase opacity-60">Start</p>
+            <h2 className="mt-8 text-lg font-semibold">Writer</h2>
+            <p className="mt-2 text-sm leading-relaxed opacity-70">
+              Drop a beat, set the vibe, and write lyrics that sit on the BPM and key.
             </p>
           </button>
           <button
             type="button"
             onClick={() => setMode("studio")}
-            className="rounded-2xl border border-border bg-surface p-6 text-left hover:border-accent/40"
+            className="min-h-44 rounded-lg border border-border bg-surface p-5 text-left hover:border-fg/30"
           >
-            <Mic2 className="size-5 text-accent" />
-            <h2 className="mt-4 font-display text-xl font-semibold">Studio mode</h2>
-            <p className="mt-2 text-sm text-muted">
-              A compact DAW: mix stems, voice covers, vocal remover, trim, echo,
-              and noise cleanup.
+            <p className="text-[11px] font-medium tracking-[0.14em] text-subtle uppercase">Mix</p>
+            <h2 className="mt-8 text-lg font-semibold">Studio</h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted">
+              Mix stems, cut vocals, and clean a take without leaving the session.
             </p>
           </button>
-        </div>
-        <div className="mt-6">
-          <Button variant="ghost" size="sm" onClick={() => setMode("writer")}>
-            Skip to writer
-          </Button>
         </div>
       </div>
     </div>

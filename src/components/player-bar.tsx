@@ -67,36 +67,41 @@ export function PlayerBar() {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface px-4 py-3">
-      <div className="mx-auto flex max-w-6xl items-center gap-3">
-        <Button size="icon" variant="secondary" onClick={() => void toggle()} aria-label={playing ? "Pause" : "Play"}>
+    <div className="transport fixed inset-x-0 bottom-0 z-40 border-t border-border bg-bg">
+      {trackUrl ? (
+        <input
+          className="block w-full"
+          type="range"
+          min={0}
+          max={duration || 0}
+          step={0.1}
+          value={Math.min(time, duration || 0)}
+          aria-label="Playback position"
+          onChange={(e) => {
+            const next = Number(e.target.value);
+            const el = audioRef.current;
+            if (!el) return;
+            el.currentTime = next;
+            setTime(next);
+          }}
+        />
+      ) : (
+        <div className="h-px bg-border" />
+      )}
+      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5">
+        <Button
+          size="icon"
+          className="size-9 rounded-full"
+          onClick={() => void toggle()}
+          aria-label={playing ? "Pause" : "Play"}
+        >
           {playing ? <Pause /> : <Play />}
         </Button>
         <div className="min-w-0 flex-1">
-          <div className="flex items-baseline justify-between gap-3">
-            <div className="truncate text-sm font-medium">{title || "Untitled"}</div>
-            <div className="shrink-0 text-xs tabular-nums text-muted">
-              {trackUrl ? `${clock(time)} / ${clock(duration)}` : "Live mix"}
-            </div>
+          <div className="truncate text-sm font-medium">{title || "Untitled"}</div>
+          <div className="font-mono text-[11px] text-subtle tabular-nums">
+            {trackUrl ? `${clock(time)} / ${clock(duration)}` : "Live mix"}
           </div>
-          {trackUrl ? (
-            <input
-              className="mt-2 w-full accent-[var(--accent)]"
-              type="range"
-              min={0}
-              max={duration || 0}
-              step={0.1}
-              value={Math.min(time, duration || 0)}
-              aria-label="Playback position"
-              onChange={(e) => {
-                const next = Number(e.target.value);
-                const el = audioRef.current;
-                if (!el) return;
-                el.currentTime = next;
-                setTime(next);
-              }}
-            />
-          ) : null}
         </div>
         <Button variant="ghost" size="sm" onClick={() => void share()}>
           <Share2 />

@@ -4,14 +4,14 @@ import { S as require_jsx_runtime, b as Link } from "../_libs/@tanstack/react-ro
 import { a as getServerFnById, i as TSS_SERVER_FUNCTION, r as createServerFn } from "./ssr.mjs";
 import { i as signOut, t as authClient } from "./client-B40BzJxt.mjs";
 import { a as hasGateSessionMarker } from "./server-CZwn7wUB.mjs";
-import { C as ImagePlus, E as ChevronRight, S as Library, T as Download, _ as Pause, b as MicVocal, c as Sparkles, d as Scissors, f as Save, g as PenLine, h as Play, i as Upload, l as Share2, m as Plus, n as Waves, o as Trash2, p as RefreshCw, r as Volume2, s as Square, t as X, u as Send, v as Music2, w as Heart, x as MicOff, y as Mic } from "../_libs/lucide-react.mjs";
+import { C as Download, S as Heart, _ as Music2, b as Library, c as Share2, d as Save, f as RefreshCw, g as Pause, h as PenLine, i as Upload, l as Send, m as Play, n as Waves, o as Trash2, p as Plus, r as Volume2, s as Square, t as X, u as Scissors, v as Mic, w as ChevronRight, x as ImagePlus, y as MicOff } from "../_libs/lucide-react.mjs";
 import { n as toast } from "../_libs/sonner.mjs";
 import { t as authMiddleware } from "./middleware-DJv7xoix.mjs";
 import { t as Slot } from "../_libs/radix-ui__react-slot.mjs";
 import { n as clsx, t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
 import { t as create } from "../_libs/zustand.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-BtXMuwbn.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-B9jkmzua.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /**
@@ -1172,8 +1172,8 @@ function cn(...inputs) {
 var buttonVariants = cva("inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-opacity duration-150 disabled:pointer-events-none disabled:opacity-40 [&_svg]:size-4 [&_svg]:shrink-0", {
 	variants: {
 		variant: {
-			default: "bg-accent text-accent-fg hover:opacity-90",
-			secondary: "border border-border bg-elevated text-fg hover:bg-surface",
+			default: "bg-fg text-bg hover:opacity-90",
+			secondary: "border border-border bg-transparent text-fg hover:bg-elevated",
 			ghost: "text-muted hover:bg-elevated hover:text-fg",
 			danger: "bg-danger text-fg hover:opacity-90"
 		},
@@ -1209,25 +1209,25 @@ function Card({ className, ...props }) {
 }
 function CardTitle({ className, ...props }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-		className: cn("font-display text-xl font-semibold tracking-tight", className),
+		className: cn("text-base font-semibold tracking-tight", className),
 		...props
 	});
 }
 function CardDesc({ className, ...props }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-		className: cn("mt-1 text-sm text-muted", className),
+		className: cn("mt-1 text-sm leading-relaxed text-muted", className),
 		...props
 	});
 }
 function Label({ className, ...props }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
-		className: cn("text-xs font-medium text-muted", className),
+		className: cn("text-[11px] font-medium tracking-[0.08em] text-subtle uppercase", className),
 		...props
 	});
 }
 var Select = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("select", {
 	ref,
-	className: cn("h-11 w-full rounded-md border border-border bg-bg px-3 text-sm text-fg outline-none focus:border-accent", className),
+	className: cn("h-11 w-full rounded-md border border-border bg-bg px-3 text-sm text-fg outline-none focus:border-fg", className),
 	...props,
 	children
 }));
@@ -1452,12 +1452,12 @@ function CoverPanel() {
 				className: "mt-4 rounded-md bg-bg px-3 py-3 text-sm text-muted",
 				children: extractSingable(lyrics) || "No singable lines yet — generate a draft in Create first."
 			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
-				className: "mt-5 w-full",
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+				className: "mt-5 sm:w-auto",
 				size: "lg",
 				disabled: busy,
 				onClick: () => void makeCover(),
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, {}), busy ? "Rendering cover…" : "Create voice cover"]
+				children: busy ? "Rendering cover…" : "Create voice cover"
 			}),
 			preview ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("audio", {
 				className: "mt-4 w-full",
@@ -1547,7 +1547,7 @@ async function decodeAudioFile(file) {
 }
 var Textarea = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", {
 	ref,
-	className: cn("min-h-32 w-full rounded-md border border-border bg-bg px-3 py-2 text-sm text-fg outline-none placeholder:text-subtle focus:border-accent", className),
+	className: cn("min-h-32 w-full resize-none rounded-md border border-border bg-bg px-3 py-3 text-sm leading-relaxed text-fg outline-none placeholder:text-subtle focus:border-fg", className),
 	...props
 }));
 Textarea.displayName = "Textarea";
@@ -1693,21 +1693,20 @@ function CreatePanel() {
 		className: "grid gap-4 lg:grid-cols-[1.4fr_0.8fr]",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, { children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, { children: "Turn an idea into a song" }),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-				className: "mt-2 text-sm text-muted",
-				children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
 					genre,
 					" · ",
 					mood,
 					" · ",
-					lengthLabel,
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-						type: "button",
-						className: "ml-2 font-medium text-accent",
-						onClick: () => setTab("settings"),
-						children: "Change in Settings"
-					})
-				]
+					lengthLabel
+				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					type: "button",
+					className: "text-fg/70 underline decoration-border underline-offset-4 hover:text-fg",
+					onClick: () => setTab("settings"),
+					children: "Settings"
+				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardDesc, { children: "Drop the beat you want to write to. We read BPM, key, and style so the lyrics sit in the pocket." }),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -1739,7 +1738,7 @@ function CreatePanel() {
 						}
 					}),
 					beatUrl ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "rounded-lg border border-border bg-bg p-3",
+						className: "rounded-lg border border-border bg-bg p-4",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								className: "flex items-start justify-between gap-2",
@@ -1799,11 +1798,11 @@ function CreatePanel() {
 								})]
 							}),
 							peaks.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "mt-3 flex h-12 items-end gap-0.5",
+								className: "mt-4 flex h-10 items-center gap-px",
 								"aria-hidden": "true",
 								children: peaks.map((peak, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "flex-1 rounded-sm bg-accent",
-									style: { height: `${Math.max(8, peak * 100)}%` }
+									className: "flex-1 rounded-full bg-fg/80",
+									style: { height: `${Math.max(12, peak * 100)}%` }
 								}, index))
 							}) : null,
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("audio", {
@@ -1822,8 +1821,14 @@ function CreatePanel() {
 							e.preventDefault();
 							onBeat(e.dataTransfer.files[0]);
 						},
-						className: "flex min-h-24 cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-bg px-4 py-5 text-sm text-muted hover:border-accent/40 hover:text-fg",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Music2, { className: "size-4" }), readingBeat ? "Reading the beat…" : "Drop or attach MP3 / WAV / M4A"]
+						className: "flex min-h-24 cursor-pointer flex-col justify-center gap-1 rounded-lg border border-border bg-bg px-4 py-5 hover:border-fg/30",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+							className: "flex items-center gap-2 text-sm font-medium text-fg",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Music2, { className: "size-4 text-muted" }), readingBeat ? "Reading the beat…" : "Add a beat"]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "text-xs text-muted",
+							children: "MP3, WAV, or M4A. BPM and key are read from the file."
+						})]
 					})
 				]
 			}),
@@ -1846,8 +1851,14 @@ function CreatePanel() {
 							e.preventDefault();
 							onPhoto(e.dataTransfer.files[0]);
 						},
-						className: "flex min-h-20 items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-bg px-4 py-5 text-sm text-muted hover:border-accent/40 hover:text-fg",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ImagePlus, { className: "size-4" }), photoDataUrl ? "Replace photo" : "Drop or attach a photo"]
+						className: "flex min-h-16 cursor-pointer flex-col justify-center gap-1 rounded-lg border border-border bg-bg px-4 py-4 text-left hover:border-fg/30",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+							className: "flex items-center gap-2 text-sm font-medium text-fg",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ImagePlus, { className: "size-4 text-muted" }), photoDataUrl ? "Replace photo" : "Add a photo"]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "text-xs text-muted",
+							children: "Optional. Used as inspiration for the lyric draft."
+						})]
 					}),
 					photoDataUrl ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 						src: photoDataUrl,
@@ -1856,15 +1867,15 @@ function CreatePanel() {
 					}) : null
 				]
 			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
-				className: "mt-5 w-full",
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+				className: "mt-6 sm:w-auto",
 				size: "lg",
 				disabled: busy || readingBeat,
 				onClick: () => void onCreate(),
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, {}), busy ? "Creating…" : beatUrl ? "Write to this beat" : "Create song"]
+				children: busy ? "Creating…" : beatUrl ? "Write to this beat" : "Create song"
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "mt-4 rounded-md border border-dashed border-border bg-bg px-3 py-3 text-sm text-muted",
+				className: "mt-3 text-xs text-subtle",
 				children: status
 			})
 		] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardTitle, { children: "Song blueprint" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dl", {
@@ -1883,7 +1894,7 @@ function CreatePanel() {
 					className: "shrink-0 text-muted",
 					children: k
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", {
-					className: "truncate text-right font-medium text-accent",
+					className: "truncate text-right font-mono text-xs",
 					children: v
 				})]
 			}, k))
@@ -1982,14 +1993,15 @@ function DawPanel() {
 			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 				className: "min-w-[520px] space-y-2",
 				children: TRACKS.map((t) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "grid items-center gap-2 sm:grid-cols-[92px_1fr_160px]",
+					className: "grid items-center gap-3 sm:grid-cols-[128px_1fr_140px]",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex items-center gap-1",
+							className: "flex items-center gap-1.5",
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 									type: "button",
-									className: cn("h-8 rounded-sm px-2 text-xs", mix.mute[t.id] ? "bg-elevated text-subtle" : "bg-bg text-fg"),
+									"aria-pressed": mix.mute[t.id],
+									className: cn("grid size-7 place-items-center rounded-sm border font-mono text-[10px]", mix.mute[t.id] ? "border-fg bg-fg text-bg" : "border-border text-muted"),
 									onClick: () => patch({
 										...mix,
 										mute: {
@@ -2001,7 +2013,8 @@ function DawPanel() {
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 									type: "button",
-									className: cn("h-8 rounded-sm px-2 text-xs", mix.solo === t.id ? "bg-accent text-accent-fg" : "bg-bg text-muted"),
+									"aria-pressed": mix.solo === t.id,
+									className: cn("grid size-7 place-items-center rounded-sm border font-mono text-[10px]", mix.solo === t.id ? "border-fg bg-fg text-bg" : "border-border text-muted"),
 									onClick: () => patch({
 										...mix,
 										solo: mix.solo === t.id ? null : t.id
@@ -2009,7 +2022,7 @@ function DawPanel() {
 									children: "S"
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-xs text-muted",
+									className: "text-xs font-medium",
 									children: t.label
 								})
 							]
@@ -2061,7 +2074,7 @@ var askDippy = createServerFn({ method: "POST" }).validator((input) => {
 }).handler(createSsrRpc("faa9e3877374fcae5276cff1b127004e96b661fc19a475e9cb1558fdecc4b768"));
 var Input = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
 	ref,
-	className: cn("h-11 w-full rounded-md border border-border bg-bg px-3 text-sm text-fg outline-none placeholder:text-subtle focus:border-accent", className),
+	className: cn("h-11 w-full rounded-md border border-border bg-bg px-3 text-sm text-fg outline-none placeholder:text-subtle focus:border-fg", className),
 	...props
 }));
 Input.displayName = "Input";
@@ -2325,25 +2338,21 @@ function LibraryPanel() {
 					})
 				]
 			})]
-		}) }), !projects.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
-			className: "flex min-h-72 flex-col items-center justify-center text-center",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Library, { className: "size-7 text-accent" }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-					className: "mt-4 font-display text-lg font-semibold",
-					children: "No saved projects yet"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "mt-1 max-w-sm text-sm leading-relaxed text-muted",
-					children: "Generate or write lyrics, then save the project from the Lyrics workspace."
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
-					className: "mt-5",
-					onClick: () => setTab("create"),
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, {}), "Create a track"]
-				})
-			]
-		}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		}) }), !projects.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, { children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+				className: "text-base font-semibold",
+				children: "No saved projects"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+				className: "mt-1 max-w-sm text-sm leading-relaxed text-muted",
+				children: "Write a draft, then save it from Lyrics. It stays in this browser until you sign in."
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+				className: "mt-5",
+				onClick: () => setTab("create"),
+				children: "Create a track"
+			})
+		] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 			className: "grid gap-4 md:grid-cols-2 xl:grid-cols-3",
 			children: projects.map((project) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Card, {
 				className: "flex min-h-72 flex-col",
@@ -2694,64 +2703,61 @@ function LyricsPanel({ onSaved }) {
 function ModeGate() {
 	const setMode = useStudio((s) => s.setMode);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: "mx-auto grid min-h-[70vh] max-w-4xl place-items-center px-4 py-10",
+		className: "mx-auto grid min-h-[70vh] max-w-3xl place-items-center px-4 py-16",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "w-full",
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "text-xs font-medium tracking-wide text-muted uppercase",
-					children: "DIPP PRO · RhymeForge"
+					className: "text-[11px] font-medium tracking-[0.16em] text-subtle uppercase",
+					children: "DIPP PRO"
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
-					className: "mt-2 font-display text-4xl font-semibold tracking-tight",
+					className: "mt-3 max-w-lg font-display text-4xl font-semibold tracking-tight sm:text-5xl",
 					children: "Make your own song"
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "mt-3 max-w-xl text-sm leading-relaxed text-muted",
-					children: "Turn a photo, a text idea, or your own beat into lyrics and a track. Start in Writer to draft fast, or open Studio for a DAW with stems, covers, and a vocal remover."
+					className: "mt-4 max-w-lg text-sm leading-relaxed text-muted",
+					children: "Start from a beat, a photo, or a line. Writer drafts. Studio mixes."
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "mt-8 grid gap-4 sm:grid-cols-2",
+					className: "mt-10 grid gap-3 sm:grid-cols-2",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 						type: "button",
 						onClick: () => setMode("writer"),
-						className: "rounded-2xl border border-border bg-surface p-6 text-left hover:border-accent/40",
+						className: "min-h-44 rounded-lg bg-fg p-5 text-left text-bg",
 						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PenLine, { className: "size-5 text-accent" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "text-[11px] font-medium tracking-[0.14em] uppercase opacity-60",
+								children: "Start"
+							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-								className: "mt-4 font-display text-xl font-semibold",
-								children: "Writer mode"
+								className: "mt-8 text-lg font-semibold",
+								children: "Writer"
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "mt-2 text-sm text-muted",
-								children: "Drop a beat or a photo, pick a vibe, hit Create. Lyrics lock to the BPM and key, then you can edit and share."
+								className: "mt-2 text-sm leading-relaxed opacity-70",
+								children: "Drop a beat, set the vibe, and write lyrics that sit on the BPM and key."
 							})
 						]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 						type: "button",
 						onClick: () => setMode("studio"),
-						className: "rounded-2xl border border-border bg-surface p-6 text-left hover:border-accent/40",
+						className: "min-h-44 rounded-lg border border-border bg-surface p-5 text-left hover:border-fg/30",
 						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MicVocal, { className: "size-5 text-accent" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "text-[11px] font-medium tracking-[0.14em] text-subtle uppercase",
+								children: "Mix"
+							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-								className: "mt-4 font-display text-xl font-semibold",
-								children: "Studio mode"
+								className: "mt-8 text-lg font-semibold",
+								children: "Studio"
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "mt-2 text-sm text-muted",
-								children: "A compact DAW: mix stems, voice covers, vocal remover, trim, echo, and noise cleanup."
+								className: "mt-2 text-sm leading-relaxed text-muted",
+								children: "Mix stems, cut vocals, and clean a take without leaving the session."
 							})
 						]
 					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "mt-6",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-						variant: "ghost",
-						size: "sm",
-						onClick: () => setMode("writer"),
-						children: "Skip to writer"
-					})
 				})
 			]
 		})
@@ -2811,62 +2817,63 @@ function PlayerBar() {
 		} catch {}
 	}
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface px-4 py-3",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "mx-auto flex max-w-6xl items-center gap-3",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-					size: "icon",
-					variant: "secondary",
-					onClick: () => void toggle(),
-					"aria-label": playing ? "Pause" : "Play",
-					children: playing ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pause, {}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Play, {})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "min-w-0 flex-1",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex items-baseline justify-between gap-3",
+		className: "transport fixed inset-x-0 bottom-0 z-40 border-t border-border bg-bg",
+		children: [
+			trackUrl ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+				className: "block w-full",
+				type: "range",
+				min: 0,
+				max: duration || 0,
+				step: .1,
+				value: Math.min(time, duration || 0),
+				"aria-label": "Playback position",
+				onChange: (e) => {
+					const next = Number(e.target.value);
+					const el = audioRef.current;
+					if (!el) return;
+					el.currentTime = next;
+					setTime(next);
+				}
+			}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-px bg-border" }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+						size: "icon",
+						className: "size-9 rounded-full",
+						onClick: () => void toggle(),
+						"aria-label": playing ? "Pause" : "Play",
+						children: playing ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pause, {}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Play, {})
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "min-w-0 flex-1",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 							className: "truncate text-sm font-medium",
 							children: title || "Untitled"
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "shrink-0 text-xs tabular-nums text-muted",
+							className: "font-mono text-[11px] text-subtle tabular-nums",
 							children: trackUrl ? `${clock(time)} / ${clock(duration)}` : "Live mix"
 						})]
-					}), trackUrl ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-						className: "mt-2 w-full accent-[var(--accent)]",
-						type: "range",
-						min: 0,
-						max: duration || 0,
-						step: .1,
-						value: Math.min(time, duration || 0),
-						"aria-label": "Playback position",
-						onChange: (e) => {
-							const next = Number(e.target.value);
-							const el = audioRef.current;
-							if (!el) return;
-							el.currentTime = next;
-							setTime(next);
-						}
-					}) : null]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
-					variant: "ghost",
-					size: "sm",
-					onClick: () => void share(),
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Share2, {}), "Share"]
-				})
-			]
-		}), trackUrl ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("audio", {
-			ref: audioRef,
-			className: "hidden",
-			src: trackUrl,
-			onLoadedMetadata: (e) => setDuration(e.currentTarget.duration || 0),
-			onTimeUpdate: (e) => setTime(e.currentTarget.currentTime),
-			onPlay: () => setPlaying(true),
-			onPause: () => setPlaying(false),
-			onEnded: () => setPlaying(false)
-		}) : null]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Button, {
+						variant: "ghost",
+						size: "sm",
+						onClick: () => void share(),
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Share2, {}), "Share"]
+					})
+				]
+			}),
+			trackUrl ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("audio", {
+				ref: audioRef,
+				className: "hidden",
+				src: trackUrl,
+				onLoadedMetadata: (e) => setDuration(e.currentTarget.duration || 0),
+				onTimeUpdate: (e) => setTime(e.currentTarget.currentTime),
+				onPlay: () => setPlaying(true),
+				onPause: () => setPlaying(false),
+				onEnded: () => setPlaying(false)
+			}) : null
+		]
 	});
 }
 function SettingsPanel() {
@@ -3474,11 +3481,14 @@ function Home() {
 	if (mode === "pick") return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "min-h-screen",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", {
-			className: "mx-auto flex max-w-6xl items-center justify-between px-4 pt-5 sm:px-6",
+			className: "mx-auto flex max-w-6xl items-center justify-between px-4 pt-6 sm:px-6",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "font-display text-2xl font-semibold tracking-tight",
-				children: ["DIPP ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-					className: "text-accent",
+				className: "flex items-baseline gap-1.5",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+					className: "text-[15px] font-semibold tracking-tight",
+					children: "DIPP"
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+					className: "text-[10px] font-medium tracking-[0.18em] text-subtle",
 					children: "PRO"
 				})]
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthSlot, {})]
@@ -3491,84 +3501,83 @@ function Home() {
 		className: cn("mx-auto min-h-screen max-w-6xl px-4 pt-5 sm:px-6", trackUrl || arrangement ? "pb-32" : "pb-16"),
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", {
-				className: "flex flex-wrap items-center gap-3",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "font-display text-2xl font-semibold tracking-tight",
-						children: ["DIPP ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "text-accent",
-							children: "PRO"
-						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "text-xs text-muted",
-						children: "RhymeForge"
-					})] }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "flex rounded-md border border-border p-0.5",
-						role: "group",
-						"aria-label": "Mode",
-						children: ["writer", "studio"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-							type: "button",
-							onClick: () => {
-								if (mode !== item) {
-									setMoreOpen(false);
-									setMode(item);
-								}
-							},
-							className: cn("h-9 rounded-sm px-3 text-sm font-medium", mode === item ? "bg-accent text-accent-fg" : "text-muted hover:text-fg"),
-							children: item === "writer" ? "Writer" : "Studio"
-						}, item))
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "ml-auto flex items-center gap-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Badge, {
-							variant: "accent",
+				className: "sticky top-0 z-30 -mx-4 border-b border-border bg-bg px-4 sm:-mx-6 sm:px-6",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex flex-wrap items-center gap-x-4 gap-y-2 py-3",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-baseline gap-1.5",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "tabular-nums",
-								children: bpm
-							}), " BPM"]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthSlot, {})]
-					})
-				]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", {
-				className: "mt-6 flex gap-2 overflow-x-auto pb-1",
-				children: [primary.map((t) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-					type: "button",
-					onClick: () => {
-						setMoreOpen(false);
-						setTab(t.id);
-					},
-					className: cn("h-11 shrink-0 rounded-md border px-4 text-sm font-medium transition-colors duration-150", tab === t.id ? "border-accent bg-accent text-accent-fg" : "border-border bg-elevated text-muted hover:text-fg"),
-					children: t.label
-				}, t.id)), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "relative",
-					ref: moreRef,
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+								className: "text-[15px] font-semibold tracking-tight",
+								children: "DIPP"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "text-[10px] font-medium tracking-[0.18em] text-subtle",
+								children: "PRO"
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "flex rounded-md border border-border p-0.5",
+							role: "group",
+							"aria-label": "Mode",
+							children: ["writer", "studio"].map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+								type: "button",
+								onClick: () => {
+									if (mode !== item) {
+										setMoreOpen(false);
+										setMode(item);
+									}
+								},
+								className: cn("h-7 rounded-sm px-2.5 text-xs font-medium", mode === item ? "bg-fg text-bg" : "text-muted hover:text-fg"),
+								children: item === "writer" ? "Writer" : "Studio"
+							}, item))
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "ml-auto flex items-center gap-4",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+								className: "font-mono text-xs text-muted tabular-nums",
+								children: [bpm, " BPM"]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AuthSlot, {})]
+						})
+					]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", {
+					className: "-mb-px flex gap-1 overflow-x-auto",
+					children: [primary.map((t) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 						type: "button",
-						"aria-expanded": moreOpen,
-						"aria-haspopup": "menu",
-						onClick: () => setMoreOpen((open) => !open),
-						className: cn("h-11 rounded-md border px-4 text-sm font-medium", moreActive ? "border-accent bg-accent text-accent-fg" : "border-border bg-elevated text-muted hover:text-fg"),
-						children: moreActive ? moreActive.label : "More"
-					}), moreOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						role: "menu",
-						className: "absolute left-0 z-30 mt-2 min-w-44 rounded-md border border-border bg-surface p-1 shadow-sm",
-						children: more.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						onClick: () => {
+							setMoreOpen(false);
+							setTab(t.id);
+						},
+						className: cn("h-10 shrink-0 border-b-2 px-3 text-[13px] font-medium", tab === t.id ? "border-fg text-fg" : "border-transparent text-muted hover:text-fg"),
+						children: t.label
+					}, t.id)), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "relative",
+						ref: moreRef,
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 							type: "button",
-							role: "menuitem",
-							onClick: () => {
-								setTab(item.id);
-								setMoreOpen(false);
-							},
-							className: cn("block w-full rounded-sm px-3 py-2 text-left text-sm", tab === item.id ? "bg-elevated text-fg" : "text-muted hover:bg-elevated hover:text-fg"),
-							children: item.label
-						}, item.id))
-					}) : null]
+							"aria-expanded": moreOpen,
+							"aria-haspopup": "menu",
+							onClick: () => setMoreOpen((open) => !open),
+							className: cn("h-10 border-b-2 px-3 text-[13px] font-medium", moreActive ? "border-fg text-fg" : "border-transparent text-muted hover:text-fg"),
+							children: moreActive ? moreActive.label : "More"
+						}), moreOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							role: "menu",
+							className: "absolute top-full left-0 z-30 mt-2 min-w-44 rounded-lg border border-border bg-surface p-1",
+							children: more.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+								type: "button",
+								role: "menuitem",
+								onClick: () => {
+									setTab(item.id);
+									setMoreOpen(false);
+								},
+								className: cn("block h-11 w-full rounded-md px-3 text-left text-sm", tab === item.id ? "bg-elevated text-fg" : "text-muted hover:bg-elevated hover:text-fg"),
+								children: item.label
+							}, item.id))
+						}) : null]
+					})]
 				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", {
-				className: "mt-5",
+				className: "mt-8",
 				children: [
 					tab === "create" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreatePanel, {}) : null,
 					tab === "lyrics" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LyricsPanel, {}) : null,
@@ -3581,13 +3590,6 @@ function Home() {
 					tab === "dippy" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DippyPanel, {}) : null,
 					tab === "settings" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SettingsPanel, {}) : null
 				]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", {
-				className: "mt-12 text-center text-xs text-subtle",
-				children: ["DIPP PRO ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-					className: "text-muted",
-					children: "RhymeForge"
-				})]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PlayerBar, {})
 		]

@@ -13,7 +13,6 @@ import { PlayerBar } from "@/components/player-bar";
 import { SettingsPanel } from "@/components/settings-panel";
 import { StoryPanel } from "@/components/story-panel";
 import { StudioPanel } from "@/components/studio-panel";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { type TabId, useStudio } from "@/store/studio-store";
 
@@ -78,9 +77,10 @@ function Home() {
   if (mode === "pick") {
     return (
       <div className="min-h-screen">
-        <header className="mx-auto flex max-w-6xl items-center justify-between px-4 pt-5 sm:px-6">
-          <div className="font-display text-2xl font-semibold tracking-tight">
-            DIPP <span className="text-accent">PRO</span>
+        <header className="mx-auto flex max-w-6xl items-center justify-between px-4 pt-6 sm:px-6">
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-[15px] font-semibold tracking-tight">DIPP</span>
+            <span className="text-[10px] font-medium tracking-[0.18em] text-subtle">PRO</span>
           </div>
           <AuthSlot />
         </header>
@@ -100,103 +100,97 @@ function Home() {
         trackUrl || arrangement ? "pb-32" : "pb-16",
       )}
     >
-      <header className="flex flex-wrap items-center gap-3">
-        <div>
-          <div className="font-display text-2xl font-semibold tracking-tight">
-            DIPP <span className="text-accent">PRO</span>
+      <header className="sticky top-0 z-30 -mx-4 border-b border-border bg-bg px-4 sm:-mx-6 sm:px-6">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 py-3">
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-[15px] font-semibold tracking-tight">DIPP</span>
+            <span className="text-[10px] font-medium tracking-[0.18em] text-subtle">PRO</span>
           </div>
-          <p className="text-xs text-muted">RhymeForge</p>
+          <div className="flex rounded-md border border-border p-0.5" role="group" aria-label="Mode">
+            {(["writer", "studio"] as const).map((item) => (
+              <button
+                key={item}
+                type="button"
+                onClick={() => {
+                  if (mode !== item) {
+                    setMoreOpen(false);
+                    setMode(item);
+                  }
+                }}
+                className={cn(
+                  "h-7 rounded-sm px-2.5 text-xs font-medium",
+                  mode === item ? "bg-fg text-bg" : "text-muted hover:text-fg",
+                )}
+              >
+                {item === "writer" ? "Writer" : "Studio"}
+              </button>
+            ))}
+          </div>
+          <div className="ml-auto flex items-center gap-4">
+            <span className="font-mono text-xs text-muted tabular-nums">{bpm} BPM</span>
+            <AuthSlot />
+          </div>
         </div>
-        <div className="flex rounded-md border border-border p-0.5" role="group" aria-label="Mode">
-          {(["writer", "studio"] as const).map((item) => (
+
+        <nav className="-mb-px flex gap-1 overflow-x-auto">
+          {primary.map((t) => (
             <button
-              key={item}
+              key={t.id}
               type="button"
               onClick={() => {
-                if (mode !== item) {
-                  setMoreOpen(false);
-                  setMode(item);
-                }
+                setMoreOpen(false);
+                setTab(t.id);
               }}
               className={cn(
-                "h-9 rounded-sm px-3 text-sm font-medium",
-                mode === item ? "bg-accent text-accent-fg" : "text-muted hover:text-fg",
+                "h-10 shrink-0 border-b-2 px-3 text-[13px] font-medium",
+                tab === t.id ? "border-fg text-fg" : "border-transparent text-muted hover:text-fg",
               )}
             >
-              {item === "writer" ? "Writer" : "Studio"}
+              {t.label}
             </button>
           ))}
-        </div>
-        <div className="ml-auto flex items-center gap-2">
-          <Badge variant="accent">
-            <span className="tabular-nums">{bpm}</span> BPM
-          </Badge>
-          <AuthSlot />
-        </div>
+          <div className="relative" ref={moreRef}>
+            <button
+              type="button"
+              aria-expanded={moreOpen}
+              aria-haspopup="menu"
+              onClick={() => setMoreOpen((open) => !open)}
+              className={cn(
+                "h-10 border-b-2 px-3 text-[13px] font-medium",
+                moreActive ? "border-fg text-fg" : "border-transparent text-muted hover:text-fg",
+              )}
+            >
+              {moreActive ? moreActive.label : "More"}
+            </button>
+            {moreOpen ? (
+              <div
+                role="menu"
+                className="absolute top-full left-0 z-30 mt-2 min-w-44 rounded-lg border border-border bg-surface p-1"
+              >
+                {more.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    role="menuitem"
+                    onClick={() => {
+                      setTab(item.id);
+                      setMoreOpen(false);
+                    }}
+                    className={cn(
+                      "block h-11 w-full rounded-md px-3 text-left text-sm",
+                      tab === item.id ? "bg-elevated text-fg" : "text-muted hover:bg-elevated hover:text-fg",
+                    )}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </nav>
       </header>
 
-      <nav className="mt-6 flex gap-2 overflow-x-auto pb-1">
-        {primary.map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            onClick={() => {
-              setMoreOpen(false);
-              setTab(t.id);
-            }}
-            className={cn(
-              "h-11 shrink-0 rounded-md border px-4 text-sm font-medium transition-colors duration-150",
-              tab === t.id
-                ? "border-accent bg-accent text-accent-fg"
-                : "border-border bg-elevated text-muted hover:text-fg",
-            )}
-          >
-            {t.label}
-          </button>
-        ))}
-        <div className="relative" ref={moreRef}>
-          <button
-            type="button"
-            aria-expanded={moreOpen}
-            aria-haspopup="menu"
-            onClick={() => setMoreOpen((open) => !open)}
-            className={cn(
-              "h-11 rounded-md border px-4 text-sm font-medium",
-              moreActive
-                ? "border-accent bg-accent text-accent-fg"
-                : "border-border bg-elevated text-muted hover:text-fg",
-            )}
-          >
-            {moreActive ? moreActive.label : "More"}
-          </button>
-          {moreOpen ? (
-            <div
-              role="menu"
-              className="absolute left-0 z-30 mt-2 min-w-44 rounded-md border border-border bg-surface p-1 shadow-sm"
-            >
-              {more.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  role="menuitem"
-                  onClick={() => {
-                    setTab(item.id);
-                    setMoreOpen(false);
-                  }}
-                  className={cn(
-                    "block w-full rounded-sm px-3 py-2 text-left text-sm",
-                    tab === item.id ? "bg-elevated text-fg" : "text-muted hover:bg-elevated hover:text-fg",
-                  )}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          ) : null}
-        </div>
-      </nav>
-
-      <main className="mt-5">
+      <main className="mt-8">
         {tab === "create" ? <CreatePanel /> : null}
         {tab === "lyrics" ? <LyricsPanel /> : null}
         {tab === "cover" ? <CoverPanel /> : null}
@@ -208,10 +202,6 @@ function Home() {
         {tab === "dippy" ? <DippyPanel /> : null}
         {tab === "settings" ? <SettingsPanel /> : null}
       </main>
-
-      <footer className="mt-12 text-center text-xs text-subtle">
-        DIPP PRO <span className="text-muted">RhymeForge</span>
-      </footer>
 
       <PlayerBar />
     </div>

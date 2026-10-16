@@ -6,6 +6,6 @@ export function Label({
   ...props
 }: React.LabelHTMLAttributes<HTMLLabelElement>) {
   return (
-    <label className={cn("text-xs font-medium text-muted", className)} {...props} />
+    <label className={cn("text-[11px] font-medium tracking-[0.08em] text-subtle uppercase", className)} {...props} />
   );
 }

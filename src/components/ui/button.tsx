@@ -8,8 +8,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-accent text-accent-fg hover:opacity-90",
-        secondary: "border border-border bg-elevated text-fg hover:bg-surface",
+        default: "bg-fg text-bg hover:opacity-90",
+        secondary: "border border-border bg-transparent text-fg hover:bg-elevated",
         ghost: "text-muted hover:bg-elevated hover:text-fg",
         danger: "bg-danger text-fg hover:opacity-90",
       },

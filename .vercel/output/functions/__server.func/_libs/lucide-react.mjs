@@ -217,28 +217,6 @@ var MicOff = createLucideIcon("mic-off", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var MicVocal = createLucideIcon("mic-vocal", [
-	["path", {
-		d: "m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12",
-		key: "80a601"
-	}],
-	["path", {
-		d: "M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5",
-		key: "j0ngtp"
-	}],
-	["circle", {
-		cx: "16",
-		cy: "7",
-		r: "5",
-		key: "d08jfb"
-	}]
-]);
-/**
-* @license lucide-react v0.510.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
 var Mic = createLucideIcon("mic", [
 	["path", {
 		d: "M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z",
@@ -463,34 +441,6 @@ var Share2 = createLucideIcon("share-2", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var Sparkles = createLucideIcon("sparkles", [
-	["path", {
-		d: "M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z",
-		key: "4pj2yx"
-	}],
-	["path", {
-		d: "M20 3v4",
-		key: "1olli1"
-	}],
-	["path", {
-		d: "M22 5h-4",
-		key: "1gvqau"
-	}],
-	["path", {
-		d: "M4 17v2",
-		key: "vumght"
-	}],
-	["path", {
-		d: "M5 18H3",
-		key: "zchphs"
-	}]
-]);
-/**
-* @license lucide-react v0.510.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
 var Square = createLucideIcon("square", [["rect", {
 	width: "18",
 	height: "18",
@@ -630,4 +580,4 @@ var X = createLucideIcon("x", [["path", {
 	key: "d8bk6v"
 }]]);
 //#endregion
-export { ImagePlus as C, ChevronRight as E, Library as S, Download as T, Pause as _, TriangleAlert as a, MicVocal as b, Sparkles as c, Scissors as d, Save as f, PenLine as g, Play as h, Upload as i, Share2 as l, Plus as m, Waves as n, Trash2 as o, RefreshCw as p, Volume2 as r, Square as s, X as t, Send as u, Music2 as v, Heart as w, MicOff as x, Mic as y };
+export { Download as C, Heart as S, Music2 as _, TriangleAlert as a, Library as b, Share2 as c, Save as d, RefreshCw as f, Pause as g, PenLine as h, Upload as i, Send as l, Play as m, Waves as n, Trash2 as o, Plus as p, Volume2 as r, Square as s, X as t, Scissors as u, Mic as v, ChevronRight as w, ImagePlus as x, MicOff as y };

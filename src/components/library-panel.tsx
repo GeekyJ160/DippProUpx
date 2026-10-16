@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { ChevronRight, Download, Library, Sparkles, Trash2, Upload } from "lucide-react";
+import { ChevronRight, Download, Library, Trash2, Upload } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardDesc, CardTitle } from "@/components/ui/card";
@@ -84,14 +84,12 @@ export function LibraryPanel() {
       </Card>
 
       {!projects.length ? (
-        <Card className="flex min-h-72 flex-col items-center justify-center text-center">
-          <Library className="size-7 text-accent" />
-          <h2 className="mt-4 font-display text-lg font-semibold">No saved projects yet</h2>
+        <Card>
+          <h2 className="text-base font-semibold">No saved projects</h2>
           <p className="mt-1 max-w-sm text-sm leading-relaxed text-muted">
-            Generate or write lyrics, then save the project from the Lyrics workspace.
+            Write a draft, then save it from Lyrics. It stays in this browser until you sign in.
           </p>
           <Button className="mt-5" onClick={() => setTab("create")}>
-            <Sparkles />
             Create a track
           </Button>
         </Card>

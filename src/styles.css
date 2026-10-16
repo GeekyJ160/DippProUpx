@@ -34,21 +34,53 @@
     color: var(--color-fg);
     font-family: var(--font-sans);
     min-height: 100%;
+    -webkit-font-smoothing: antialiased;
   }
 
   body {
-    background-image: linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--color-fg) 3%, var(--color-bg)) 0%,
-      var(--color-bg) 28%
-    );
-    background-attachment: fixed;
+    background: var(--color-bg);
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-fg) 22%, transparent);
+    color: var(--color-fg);
   }
 
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+
+  :focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--color-fg) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  img {
+    outline: 1px solid color-mix(in oklab, var(--color-fg) 12%, transparent);
+    outline-offset: -1px;
+  }
+
+  input[type="range"] {
+    height: 3px;
+    cursor: pointer;
+    appearance: none;
+    border-radius: 999px;
+    background: var(--color-border);
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+    appearance: none;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-fg);
+  }
+}
+
+.transport {
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mic, Sparkles } from "lucide-react";
+import { Mic } from "lucide-react";
 import { toast } from "sonner";
 import { synthesizeCover, VOICES } from "@/lib/ai-voice";
 import { b64ToBlob, mixOntoTrack } from "@/lib/audio-engine";
@@ -70,8 +70,7 @@ export function CoverPanel() {
         <p className="mt-4 rounded-md bg-bg px-3 py-3 text-sm text-muted">
           {extractSingable(lyrics) || "No singable lines yet — generate a draft in Create first."}
         </p>
-        <Button className="mt-5 w-full" size="lg" disabled={busy} onClick={() => void makeCover()}>
-          <Sparkles />
+        <Button className="mt-5 sm:w-auto" size="lg" disabled={busy} onClick={() => void makeCover()}>
           {busy ? "Rendering cover…" : "Create voice cover"}
         </Button>
         {preview ? <audio className="mt-4 w-full" controls src={preview} /> : null}
