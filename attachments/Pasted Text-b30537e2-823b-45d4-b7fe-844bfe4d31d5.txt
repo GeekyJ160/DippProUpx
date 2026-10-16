@@ -1,0 +1,616 @@
+Complete the rest of the component code
+4, fix the remaining TypeScript errors
+
+Below is the completed component tail, including **Story Song**, **Library**, the closing JSX, and a set of TypeScript-safe fixes for the rest of the component.
+
+Replace everything starting at the truncated line:
+
+```tsx
+<div className="mt-4"><Status>Click the waveform to scrub...
+```
+
+with this:
+
+```tsx
+              <div className="mt-4">
+                <Status>
+                  Click the waveform to scrub. BPM estimation and center-channel
+                  vocal reduction run locally from decoded samples.
+                </Status>
+              </div>
+            </Panel>
+          )}
+
+          {tab === "story" && (
+            <div className="grid gap-4 lg:grid-cols-[1.45fr_.8fr]">
+              <Panel>
+                <div className="flex items-start gap-3">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-[#ff5f9d]/10 text-[#ff78ad]">
+                    <Heart className="size-5" />
+                  </div>
+                  <div>
+                    <h1 className="dipp-title text-2xl font-extrabold tracking-[-0.04em]">
+                      Turn your story into a song
+                    </h1>
+                    <p className="mt-1.5 text-sm text-white/45">
+                      Add the memories, turning points, and details that make the
+                      lyric draft personal.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-6 space-y-4">
+                  <Field
+                    label="How it began"
+                    value={story.beginning}
+                    onChange={(beginning) =>
+                      setStory((current) => ({ ...current, beginning }))
+                    }
+                    placeholder="We met on a summer night, both trying to find our way..."
+                  />
+
+                  <Field
+                    label="Key moments"
+                    value={story.moments}
+                    onChange={(moments) =>
+                      setStory((current) => ({ ...current, moments }))
+                    }
+                    placeholder="The late-night drives, setbacks, big wins, and moments you remember..."
+                  />
+
+                  <Field
+                    label="Personal details"
+                    value={story.details}
+                    onChange={(details) =>
+                      setStory((current) => ({ ...current, details }))
+                    }
+                    placeholder="A place, phrase, color, promise, inside joke, or meaningful detail..."
+                  />
+
+                  <div className="flex flex-wrap gap-3">
+                    <Button onClick={createStory} disabled={generating}>
+                      {generating ? (
+                        <Loader2 className="size-4 dipp-spin" />
+                      ) : (
+                        <WandSparkles className="size-4" />
+                      )}
+                      {generating ? "Writing your story…" : "Create story song"}
+                    </Button>
+
+                    <Button variant="secondary" onClick={() => setTab("lyrics")}>
+                      Open Lyrics <ChevronRight className="size-4" />
+                    </Button>
+                  </div>
+                </div>
+              </Panel>
+
+              <Panel>
+                <div className="flex items-center gap-2">
+                  <Sparkles className="size-5 text-[#ffbd45]" />
+                  <div>
+                    <h2 className="font-bold">Story ingredients</h2>
+                    <p className="text-xs text-white/35">
+                      What DIPP will use in the lyric draft
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-4 space-y-3">
+                  {(
+                    [
+                      ["Beginning", story.beginning],
+                      ["Moments", story.moments],
+                      ["Details", story.details],
+                    ] as const
+                  ).map(([label, value]) => (
+                    <div
+                      key={label}
+                      className="rounded-xl border border-white/[0.08] bg-[#0e0e19] p-3"
+                    >
+                      <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/35">
+                        {label}
+                      </div>
+                      <p className="mt-1 text-sm leading-relaxed text-white/65">
+                        {value.trim() || "Not added yet"}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4">
+                  <Status>
+                    Specific places, sensory details, and real moments produce a more
+                    memorable lyric starting point.
+                  </Status>
+                </div>
+              </Panel>
+            </div>
+          )}
+
+          {tab === "library" && (
+            <div className="space-y-4">
+              <Panel>
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <Library className="size-5 text-[#50e3ff]" />
+                      <h1 className="dipp-title text-2xl font-extrabold tracking-[-0.04em]">
+                        Project library
+                      </h1>
+                    </div>
+                    <p className="mt-1.5 text-sm text-white/45">
+                      Projects are saved locally in this browser. Export JSON backups
+                      before clearing browser storage.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    <input
+                      ref={importLibRef}
+                      type="file"
+                      accept="application/json,.json"
+                      className="hidden"
+                      onChange={(event) => {
+                        void importLibrary(event.target.files?.[0]);
+                        event.target.value = "";
+                      }}
+                    />
+
+                    <Button
+                      variant="secondary"
+                      onClick={() => importLibRef.current?.click()}
+                    >
+                      <Upload className="size-4" />
+                      Import JSON
+                    </Button>
+
+                    <Button
+                      variant="secondary"
+                      disabled={!library.length}
+                      onClick={exportLibrary}
+                    >
+                      <Download className="size-4" />
+                      Export library
+                    </Button>
+                  </div>
+                </div>
+              </Panel>
+
+              {library.length === 0 ? (
+                <Panel className="flex min-h-72 flex-col items-center justify-center text-center">
+                  <div className="flex size-14 items-center justify-center rounded-2xl bg-[#9b6cff]/10 text-[#b99cff]">
+                    <Library className="size-7" />
+                  </div>
+                  <h2 className="mt-4 text-lg font-bold">No saved projects yet</h2>
+                  <p className="mt-1 max-w-sm text-sm leading-relaxed text-white/45">
+                    Generate or write lyrics, then save the project from the Lyrics
+                    workspace.
+                  </p>
+                  <Button className="mt-5" onClick={() => setTab("create")}>
+                    <Sparkles className="size-4" />
+                    Create a track
+                  </Button>
+                </Panel>
+              ) : (
+                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  {library.map((project) => (
+                    <Panel key={project.id} className="flex min-h-72 flex-col">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <h2 className="truncate text-base font-bold">
+                            {project.title}
+                          </h2>
+                          <p className="mt-1 text-xs text-white/35">
+                            {formatDate(project.timestamp)}
+                          </p>
+                        </div>
+
+                        <span className="shrink-0 rounded-full bg-[#28233c] px-2.5 py-1 text-[10px] font-bold text-[#d9ccff]">
+                          {project.genre}
+                        </span>
+                      </div>
+
+                      <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-bold uppercase tracking-[0.12em]">
+                        <span className="rounded-full bg-white/[0.05] px-2.5 py-1 text-white/45">
+                          {project.mood}
+                        </span>
+                        <span className="rounded-full bg-white/[0.05] px-2.5 py-1 text-white/45">
+                          {project.length}
+                        </span>
+                      </div>
+
+                      {project.prompt && (
+                        <p className="mt-3 line-clamp-2 text-xs leading-relaxed text-white/40">
+                          {project.prompt}
+                        </p>
+                      )}
+
+                      <p className="mt-4 line-clamp-6 whitespace-pre-wrap text-sm leading-relaxed text-white/60">
+                        {project.lyrics}
+                      </p>
+
+                      <div className="mt-auto flex flex-wrap gap-2 pt-5">
+                        <Button
+                          variant="secondary"
+                          className="!px-3 !py-2"
+                          onClick={() => loadProject(project)}
+                        >
+                          Open <ChevronRight className="size-4" />
+                        </Button>
+
+                        <Button
+                          variant="ghost"
+                          className="!px-3 !py-2"
+                          onClick={() => exportProject(project)}
+                        >
+                          <Download className="size-4" />
+                          Export
+                        </Button>
+
+                        <Button
+                          variant="danger"
+                          className="!px-3 !py-2"
+                          onClick={() => deleteProject(project.id, project.title)}
+                        >
+                          <Trash2 className="size-4" />
+                          Delete
+                        </Button>
+                      </div>
+                    </Panel>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {notice && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="fixed bottom-5 left-1/2 z-50 w-[min(92vw,440px)] -translate-x-1/2 rounded-xl border border-white/10 bg-[#1b192c] px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_16px_60px_rgba(0,0,0,.45)]"
+          >
+            {notice}
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
+
+export default App;
+```
+
+## TypeScript fixes
+
+Make the following changes in the existing component.
+
+### 1. Type the object URLs safely
+
+Change this:
+
+```tsx
+const [photo, setPhoto] = useState("");
+const [instrumental, setInstrumental] = useState("");
+```
+
+to:
+
+```tsx
+const [photo, setPhoto] = useState<string | null>(null);
+const [instrumental, setInstrumental] = useState<string | null>(null);
+```
+
+Then update conditional checks naturally:
+
+```tsx
+if (photo) URL.revokeObjectURL(photo);
+if (instrumental) URL.revokeObjectURL(instrumental);
+```
+
+And where an empty string is used to clear them, use `null`:
+
+```tsx
+setInstrumental(null);
+```
+
+### 2. Make DOM refs explicitly nullable
+
+Replace your ref declarations with:
+
+```tsx
+const photoRef = useRef<HTMLInputElement | null>(null);
+const audioRef = useRef<HTMLInputElement | null>(null);
+const importLibRef = useRef<HTMLInputElement | null>(null);
+const player = useRef<HTMLAudioElement | null>(null);
+const instPlayer = useRef<HTMLAudioElement | null>(null);
+```
+
+Explicit nullability is useful for strict TypeScript when refs can be absent before conditional UI mounts. React sets DOM refs after mounting and clears them on unmount. [1][2]
+
+### 3. Add an AudioContext ref
+
+Place this with the other refs:
+
+```tsx
+const audioContextRef = useRef<AudioContext | null>(null);
+
+function getAudioContext(): AudioContext {
+  if (!audioContextRef.current) {
+    audioContextRef.current = new AudioContext();
+  }
+
+  return audioContextRef.current;
+}
+```
+
+Add this cleanup effect:
+
+```tsx
+useEffect(() => {
+  return () => {
+    void audioContextRef.current?.close();
+  };
+}, []);
+```
+
+### 4. Update `loadAudio`
+
+Replace the entire function:
+
+```tsx
+async function loadAudio(file?: File) {
+  if (!file) return;
+
+  if (audio?.url) URL.revokeObjectURL(audio.url);
+
+  if (instrumental) {
+    URL.revokeObjectURL(instrumental);
+    setInstrumental(null);
+  }
+
+  const url = URL.createObjectURL(file);
+  setAudioBusy(true);
+
+  try {
+    const context = getAudioContext();
+    const buffer = await context.decodeAudioData(await file.arrayBuffer());
+    const bpm = estimateBpm(buffer);
+
+    setCurrentTime(0);
+    setAudio({
+      name: file.name,
+      url,
+      duration: buffer.duration,
+      bpm,
+      channels: buffer.numberOfChannels,
+      sampleRate: buffer.sampleRate,
+      buffer,
+      waveform: createWaveformPoints(buffer),
+    });
+
+    toast(`Audio loaded · BPM estimated ${bpm}`);
+  } catch {
+    URL.revokeObjectURL(url);
+    toast("That audio format could not be read in this browser");
+  } finally {
+    setAudioBusy(false);
+  }
+}
+```
+
+`decodeAudioData()` asynchronously decodes complete `ArrayBuffer` audio data into an `AudioBuffer`, which matches this local upload flow. [3]
+
+### 5. Update `removeVocals`
+
+Replace the existing function:
+
+```tsx
+function removeVocals() {
+  if (!audio) return;
+
+  if (audio.channels < 2) {
+    toast("Use a stereo file for center-vocal reduction");
+    return;
+  }
+
+  setAudioBusy(true);
+
+  window.setTimeout(() => {
+    try {
+      const ctx = getAudioContext();
+      const out = ctx.createBuffer(
+        2,
+        audio.buffer.length,
+        audio.buffer.sampleRate
+      );
+
+      const left = audio.buffer.getChannelData(0);
+      const right = audio.buffer.getChannelData(1);
+      const outputLeft = out.getChannelData(0);
+      const outputRight = out.getChannelData(1);
+
+      for (let index = 0; index < audio.buffer.length; index += 1) {
+        const sample = (left[index] - right[index]) * 0.7;
+        outputLeft[index] = sample;
+        outputRight[index] = sample;
+      }
+
+      if (instrumental) URL.revokeObjectURL(instrumental);
+
+      setInstrumental(URL.createObjectURL(encodeWav(out)));
+      toast("Center-vocal-reduced WAV created");
+    } catch {
+      toast("Vocal reduction failed");
+    } finally {
+      setAudioBusy(false);
+    }
+  }, 40);
+}
+```
+
+`AudioBuffer` exposes individual channel sample arrays through `getChannelData()`, which is the correct data source for this kind of PCM transformation. [4]
+
+### 6. Fix audio replacement cleanup
+
+Replace this block:
+
+```tsx
+onClick={() => {
+  setAudio(null);
+  setInstrumental("");
+  setPlaying(false);
+  setPlayingInst(false);
+  setCurrentTime(0);
+}}
+```
+
+with:
+
+```tsx
+onClick={() => {
+  if (audio?.url) URL.revokeObjectURL(audio.url);
+  if (instrumental) URL.revokeObjectURL(instrumental);
+
+  player.current?.pause();
+  instPlayer.current?.pause();
+
+  setAudio(null);
+  setInstrumental(null);
+  setPlaying(false);
+  setPlayingInst(false);
+  setCurrentTime(0);
+}}
+```
+
+### 7. Fix the `downloadInstrumental` null guard
+
+Replace:
+
+```tsx
+async function downloadInstrumental() {
+  if (!instrumental) return;
+  downloadBlob(
+    "DIPP-PRO-instrumental.wav",
+    await fetch(instrumental).then((r) => r.blob())
+  );
+}
+```
+
+with:
+
+```tsx
+async function downloadInstrumental(): Promise<void> {
+  if (!instrumental) return;
+
+  try {
+    const response = await fetch(instrumental);
+
+    if (!response.ok) {
+      throw new Error("Could not retrieve instrumental audio");
+    }
+
+    downloadBlob(
+      "DIPP-PRO-instrumental.wav",
+      await response.blob()
+    );
+  } catch {
+    toast("Could not download instrumental");
+  }
+}
+```
+
+### 8. Fix `toggleInst`
+
+Your nullable `instrumental` state can be handled safely with:
+
+```tsx
+function toggleInst() {
+  const instrumentalPlayer = instPlayer.current;
+
+  if (!instrumentalPlayer || !instrumental) return;
+
+  if (instrumentalPlayer.paused) {
+    player.current?.pause();
+    setPlaying(false);
+    void instrumentalPlayer.play();
+  } else {
+    instrumentalPlayer.pause();
+  }
+}
+```
+
+### 9. Add a type-safe slider helper
+
+The original computed-key `setMix` code may be accepted, but this helper removes ambiguity under strict TypeScript.
+
+Add above `return`:
+
+```tsx
+function updateMix(name: keyof StemMix, value: number) {
+  setMix((current) => ({
+    ...current,
+    [name]: value,
+  }));
+}
+```
+
+Replace this:
+
+```tsx
+onChange={(e) =>
+  setMix((c) => ({ ...c, [name]: Number(e.target.value) }) as StemMix)
+}
+```
+
+with:
+
+```tsx
+onChange={(event) =>
+  updateMix(name as keyof StemMix, Number(event.target.value))
+}
+```
+
+For an even cleaner version, replace the studio slider mapping with:
+
+```tsx
+{(Object.entries(mix) as [keyof StemMix, number][]).map(([name, value]) => (
+  <label
+    key={name}
+    className="rounded-xl border border-white/[0.08] bg-[#0e0e19] p-3 text-xs text-white/60"
+  >
+    <div className="mb-2 flex justify-between">
+      <span className="capitalize">{name}</span>
+      <b className="text-[#50e3ff]">{value}%</b>
+    </div>
+
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value={value}
+      onChange={(event) =>
+        updateMix(name, Number(event.target.value))
+      }
+      className="w-full accent-[#9b6cff]"
+    />
+  </label>
+))}
+```
+
+### 10. Fix the cleanup effect
+
+Use this version to accommodate nullable string state:
+
+```tsx
+useEffect(() => {
+  return () => {
+    if (photo) URL.revokeObjectURL(photo);
+    if (audio?.url) URL.revokeObjectURL(audio.url);
+    if (instrumental) URL.revokeObjectURL(instrumental);
+  };
+}, [photo, audio?.url, instrumental]);
+```
+
+This completes the missing JSX and makes the state/ref/audio sections compatible with strict TypeScript, without needing unsafe assertions. React recommends treating refs as nullable DOM references and checking them before imperative usage. [1]
+

@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "DIPP PRO",
+      "hasCanvas": false,
+      "bodyTextLen": 450,
+      "bodyTextHash": "658a15df0018a7dad48bada9be2595c8cf21eb2f5a5cee02a542b64fb8a4805c",
+      "bodyTextPrefix": "DIPP PRO DIPP PRO · RHYMEFORGE Make your own song Turn a photo, ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "DIPP PRO",
+      "hasCanvas": false,
+      "bodyTextLen": 450,
+      "bodyTextHash": "658a15df0018a7dad48bada9be2595c8cf21eb2f5a5cee02a542b64fb8a4805c",
+      "bodyTextPrefix": "DIPP PRO DIPP PRO · RHYMEFORGE Make your own song Turn a photo, ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
